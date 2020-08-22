@@ -1,0 +1,65 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Expense Reminder API Docs ",
+      "description": "A minimal and easy to follow example of what you need to create a CRUD style API in NodeJs",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "tags": [
+      {
+        "name": "Daily Rates",
+        "description": "API for users in the Hueman Resource"
+      }
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/daily_rates/{type?}": {
+        "get": {
+          "tags": [
+            "Rates"
+          ],
+          "parameters": [
+            {
+              "name":"type",
+              "required": false,
+              "description": "base exhange type USD,TRY,CAD.."
+            }
+          ],
+          "summary": "Return daily rates ",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Rate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Rate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "type": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "number"
+          }
+        }
+      }
+    }
+}
