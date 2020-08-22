@@ -2,6 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 const fetch = require("node-fetch");
+const firebase = require('./firebase.js');
+
+
+
 
 const API_URL = "https://api.exchangeratesapi.io/latest?base="
 
@@ -39,4 +43,6 @@ app.get("/daily_rates/:type?", function (request, response) {
 
 app.listen(process.env.PORT || 3000, function(){
     console.log("Server is running ", this.address().port);
-  });
+});
+
+
