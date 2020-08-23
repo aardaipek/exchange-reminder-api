@@ -22,7 +22,7 @@
       "application/json"
     ],
     "paths": {
-      "/daily_rates/{type?}": {
+      "/api/daily_rates/{type?}": {
         "get": {
           "tags": [
             "Rates"
@@ -34,7 +34,23 @@
               "description": "base exhange type USD,TRY,CAD.."
             }
           ],
-          "summary": "Return daily rates ",
+          "summary": "This endpoint returns daily rates ",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Rate"
+              }
+            }
+          }
+        }
+      },
+      "/api/latest_rates/": {
+        "get": {
+          "tags": [
+            "Rates"
+          ],
+          "summary": "This endpoint returns latest  rates update every 15 min ",
           "responses": {
             "200": {
               "description": "OK",

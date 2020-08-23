@@ -14,7 +14,7 @@ app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const bodyParser = require("body-parser");
 
 app.get("/", function (req, res) {
-  res.send("Hi");
+  res.redirect("/swagger");
 });
 
 // return daily rates
