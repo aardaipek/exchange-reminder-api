@@ -19,9 +19,11 @@ app.get('/', function (req, res) {
 })
 
 // return daily rates
-app.get("/daily_rates/:type?", function (request, response) {
+app.get("/api/daily_rates/:type?", function (request, response) {
     var type = (request.params.type) != null ? (request.params.type) : "USD";
-    fetch(API_URL+ type )
+    var convertedToUppercase = type.toUpperCase() === type ? type : type.toUpperCase();
+
+    fetch(API_URL+ convertedToUppercase )
     .then((res) => { 
       status = res.status; 
       return res.json()
