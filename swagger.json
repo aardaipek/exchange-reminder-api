@@ -34,7 +34,7 @@
               "description": "base exhange type USD,TRY,CAD.."
             }
           ],
-          "summary": "This endpoint returns daily rates ",
+          "summary": "This endpoint returns daily rates type => try,usd,cad.... ",
           "responses": {
             "200": {
               "description": "OK",

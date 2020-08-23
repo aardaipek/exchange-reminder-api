@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const path = require('path');
 const fetch = require("node-fetch");
+app.set('view engine', 'pug')
 
 const API_URL = "https://api.exchangeratesapi.io/latest?base=";
 
@@ -14,7 +16,7 @@ app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const bodyParser = require("body-parser");
 
 app.get("/", function (req, res) {
-  res.redirect("/swagger");
+  res.render('index', { title: 'Hey' })
 });
 
 // return daily rates
