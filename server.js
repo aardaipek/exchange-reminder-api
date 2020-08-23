@@ -38,6 +38,7 @@ app.get("/api/daily_rates/:type?", function (request, response) {
 });
 
 // include altın
+// GMT 0 saatine göre 15 er dk da bir güncelleniyor.
 app.get("/api/latest_rates", function (request, response) {
   var apiURl = "https://finans.truncgil.com/today.json";
   fetch(apiURl)
