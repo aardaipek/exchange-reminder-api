@@ -16,7 +16,7 @@ app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const bodyParser = require("body-parser");
 
 app.get("/", function (req, res) {
-  res.render('index', { title: 'Hey' })
+  res.render('index', { title: 'Exchange-Reminder API' })
 });
 
 // return daily rates
