@@ -3,7 +3,10 @@ const app = express();
 const port = 3000;
 const path = require('path');
 const fetch = require("node-fetch");
-app.set('view engine', 'pug')
+app.set('view engine', 'pug');
+
+var cors = require('cors')
+app.use(cors())
 
 const API_URL = "https://api.exchangeratesapi.io/latest?base=";
 
