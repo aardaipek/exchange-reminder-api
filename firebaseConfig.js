@@ -3,11 +3,11 @@ const firebaseConfig = {
     authDomain: "null",
     databaseURL: "null",
     projectId: "null",
-    storageBucket: "null",
+    storageBucket: "enull",
     messagingSenderId: "null",
     appId: "null"
   };
 
-  module.exports.firebaseConfig;
+exports.config = firebaseConfig;
 
 
