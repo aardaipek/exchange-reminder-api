@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const fetch = require("node-fetch");
 const firebase = require('./firebase.js');
+const auth = require('./firebase-auth/auth.js');
 
 var cors = require('cors')
 app.use(cors())
@@ -55,15 +56,23 @@ app.post("/api/add_rate",function(request,response) {
     user_rate : _userrate,
     exchange_type: _exchangeType
   }
-  console.log(data)
 
   firebase.writeUser(data)
 });
 
+app.post("/user/create",function(request,response) {
+
+  var userEmail = request.body.email;
+  var userPassword = request.body.password;
+  var data = {
+    userEmail : userEmail,
+    userPassword : userPassword
+  }
+  auth.createUser(data)
+});
+
 app.get("/api/get_data",function(request,response) {
- firebase.getData().then((res)=> {
-    console.log(res)
- })
+ firebase.getData()
 })
   
 

@@ -1,7 +1,6 @@
 // Firebase
 const firebase = require("firebase/app");
 const database = require("firebase/database");
-const auth = require("firebase/auth");
 const firebaseConfig = require("./firebaseConfig");
 
 firebase.initializeApp(firebaseConfig.config);
@@ -18,12 +17,12 @@ function writeUserData(data) {
 
 async function getData() {
   try {
-    firebase
+    await firebase
       .database()
-      .ref("test/")
+      .ref("rates/")
       .once("value")
       .then(function (snapshot) {
-        var username = snapshot.val() && snapshot.val().name;
+        var username = snapshot.val() && snapshot.val().user_name;
         console.log(username)
         return username;
       });
@@ -32,5 +31,7 @@ async function getData() {
   }
 }
 
+
+exports.firebase = firebase;
 exports.getData = getData;
 exports.writeUser = writeUserData;
