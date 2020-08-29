@@ -6,11 +6,12 @@ const firebaseConfig = require("./firebaseConfig");
 
 firebase.initializeApp(firebaseConfig.config);
 
-function writeUserData(name, lastname = "ipek") {
+function writeUserData(data) {
   try {
-    firebase.database().ref("test/").set({
-      name: name,
-      lastname: lastname,
+    firebase.database().ref("rates/").set({
+      user_name: data.user_name,
+      user_rate: data.user_rate,
+      exchange_type: data.exchange_type
     });
   } catch (err) {}
 }

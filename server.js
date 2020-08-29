@@ -18,9 +18,11 @@ const swaggerDocument = require('./swagger.json');
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
-    res.send("Hi");
+    res.send("DEV branch");
 })
 
 // return daily rates
@@ -43,11 +45,19 @@ app.get("/daily_rates/:type?", function (request, response) {
 })
 
 // post işlemi fakat değişecek 
-app.post("/api/add_rate/:rate?",function(request,response) {
-  if(!request.params.rate)
-      return response.status(400).json({status: 400, message: "Parametre eksik"});
-  var rate = request.params.rate
-  firebase.writeUser(rate)
+app.post("/api/add_rate",function(request,response) {
+
+  var _username = request.body.user_name;
+  var _userrate = request.body.user_rate;
+  var _exchangeType = request.body.exchange_type;
+  var data = {
+    user_name : _username,
+    user_rate : _userrate,
+    exchange_type: _exchangeType
+  }
+  console.log(data)
+
+  firebase.writeUser(data)
 });
 
 app.get("/api/get_data",function(request,response) {
