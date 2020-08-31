@@ -2,6 +2,7 @@ const auth = require("firebase/auth");
 const firebase = require("../firebase.js");
 
 
+
 getCurrentUserData = async () => {
   await firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
