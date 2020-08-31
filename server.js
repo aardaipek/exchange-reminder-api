@@ -62,6 +62,7 @@ app.post("/api/add_rate", function (request, response) {
   firebase.writeUser(data);
 });
 
+// Firebase
 app.post("/user/create", function (request, response) {
   var userEmail = request.body.email;
   var userPassword = request.body.password;
@@ -80,6 +81,35 @@ app.post("/user/create", function (request, response) {
         email: jsonData.user.email,
         emailVerified: jsonData.user.emailVerified,
         registerType: "emailAndPasssword",
+      };
+      response.send(returnModel);
+    })
+    .catch(function (error) {
+      console.log(error);
+      response.status(400).send(error.message);
+    });
+});
+
+// Firebase 
+app.post("/user/login",function (request, response) {
+  var userEmail = request.body.email;
+  var userPassword = request.body.password;
+  if (!userEmail && !userPassword) response.status(400).send("Parameters null");
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(userEmail, userPassword)
+    .then((res) => {
+      status = res.status;
+      return res;
+    })
+    .then((jsonData) => {
+      var returnModel = {
+        operationType: jsonData.user.operationType,
+        uid: jsonData.user.uid,
+        displayName: jsonData.user.displayName,
+        email: jsonData.user.email,
+        emailVerified: jsonData.user.emailVerified,
+        signInType: "emailAndPasssword"
       };
       response.send(returnModel);
     })
