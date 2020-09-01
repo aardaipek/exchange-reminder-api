@@ -1,14 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-<<<<<<< HEAD
-const path = require('path');
-const fetch = require("node-fetch");
-app.set('view engine', 'pug');
-
-var cors = require('cors')
-app.use(cors())
-=======
 const fetch = require("node-fetch");
 const http = require("http");
 const firebaseService = require("./firebase.js");
@@ -19,7 +11,6 @@ firebase.initializeApp(firebaseConfig.config);
 
 var cors = require("cors");
 app.use(cors());
->>>>>>> dev
 
 const API_URL = "https://api.exchangeratesapi.io/latest?base=";
 
@@ -30,19 +21,6 @@ const swaggerDocument = require("./swagger.json");
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const bodyParser = require("body-parser");
-<<<<<<< HEAD
-
-app.get("/", function (req, res) {
-  res.render('index', { title: 'Exchange-Reminder API' })
-});
-
-// return daily rates
-app.get("/api/daily_rates/:type?", function (request, response) {
-  var type = request.params.type != null ? request.params.type : "USD";
-  var convertedToUppercase =
-    type.toUpperCase() === type ? type : type.toUpperCase();
-
-=======
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -55,7 +33,6 @@ app.get("/daily_rates/:type?", function (request, response) {
   var type = request.params.type != null ? request.params.type : "USD";
   var convertedToUppercase =
     type.toUpperCase() === type ? type : type.toUpperCase();
->>>>>>> dev
   fetch(API_URL + convertedToUppercase)
     .then((res) => {
       status = res.status;
@@ -68,28 +45,6 @@ app.get("/daily_rates/:type?", function (request, response) {
     .catch((err) => {
       console.error(err);
     });
-<<<<<<< HEAD
-});
-
-// include altın
-// GMT 0 saatine göre 15 er dk da bir güncelleniyor.
-app.get("/api/latest_rates", function (request, response) {
-  var apiURl = "https://finans.truncgil.com/today.json";
-  fetch(apiURl)
-    .then((res) => {
-      status = res.status;
-      return res.json();
-    })
-    .then((jsonData) => {
-      let returnArray = Object.entries(jsonData);
-      response.send(returnArray);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-});
-
-=======
   firebase.writeUser("arda", "aypek");
 });
 
@@ -168,7 +123,6 @@ app.get("/api/get_data", function (request, response) {
   firebase.getData();
 });
 
->>>>>>> dev
 app.listen(process.env.PORT || port, function () {
   console.log("Server is running ", this.address().port);
 });
