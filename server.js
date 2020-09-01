@@ -48,6 +48,23 @@ app.get("/daily_rates/:type?", function (request, response) {
   firebase.writeUser("arda", "aypek");
 });
 
+app.get("/api/instant_rates", function (request, response) {
+  const api = "http://api.bigpara.hurriyet.com.tr/doviz/headerlist/anasayfa"
+  
+  fetch(api)
+    .then((res) => {
+      status = res.status;
+      return res.json();
+    })
+    .then((jsonData) => {
+      let returnArray = Object.entries(jsonData);
+      response.send(returnArray);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+
 // post işlemi fakat değişecek
 app.post("/api/add_rate", function (request, response) {
   var _username = request.body.user_name;
