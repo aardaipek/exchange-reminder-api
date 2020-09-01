@@ -8,7 +8,7 @@ const firebase = require("firebase/app");
 const firebaseAuth = require("firebase/auth");
 const firebaseConfig = require("./firebaseConfig");
 firebase.initializeApp(firebaseConfig.config);
-
+app.set('view engine', 'pug')
 var cors = require("cors");
 app.use(cors());
 
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", function (req, res) {
-  res.send("DEV branch");
+  res.render('index', { title: 'Hey' })
 });
 
 // return daily rates
